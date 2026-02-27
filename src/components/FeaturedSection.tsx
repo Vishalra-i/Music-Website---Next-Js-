@@ -1,60 +1,70 @@
 "use client";
 
-import courseData from '@/data/musicCourse.json'
-import Link from 'next/link'
-import { BackgroundGradient } from './ui/background-gradient';
-
-interface Course{
-    id: number;
-    title: string;
-    slug: string;
-    description: string;
-    price: number;
-    instructor: string;
-    isFeatured: boolean;
-}
+const demoProducts = [
+  {
+    id: 1,
+    title: "Matte Porcelain Floor Tiles",
+    category: "Tiles",
+    image:
+      "https://images.unsplash.com/photo-1617104551722-3b2d513664f7?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    id: 2,
+    title: "Designer Wall Tile Collection",
+    category: "Tiles",
+    image:
+      "https://images.unsplash.com/photo-1631889993959-41b4e9c6e3c5?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    id: 3,
+    title: "Luxury Faucet & Mixer Set",
+    category: "Bathroom Accessories",
+    image:
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    id: 4,
+    title: "Countertop Basin & Mirror Combo",
+    category: "Bathroom Accessories",
+    image:
+      "https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=900&q=80",
+  },
+];
 
 function FeaturedSection() {
-   const featuredCourses = courseData.courses.filter((course : Course)=>course.isFeatured )
   return (
-    <div className="py-12 bg-gray-900">
-        <div>
-            <div className="text-center">
-                <h2 className="text-base text-teal-600 font-bold tracking-wide uppercase">FEATURED COURSES</h2>
-                <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">Learn With the Best</p>
-            </div>
+    <section className="py-14 bg-gray-900" id="products">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h2 className="text-base text-teal-500 font-bold tracking-wide uppercase">Demo Products</h2>
+          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+            Tiles & Bathroom Accessories Gallery
+          </p>
+        </div>
 
-       </div>
-       <div className='mt-10'>
-         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
-             {
-              featuredCourses.map((course : Course)=>(
-                <div key={course.id} className="flex justify-center">
-                    <BackgroundGradient
-                        className="flex flex-col rounded-[22px] bg-white dark:bg-zinc-900 overflow-hidden h-full max-w-sm">
-                            <div className="p-4 sm:p-6 flex flex-col items-center text-center flex-grow">
-                                <p className="text-lg sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">{course.title}</p>
-                                <p className="text-sm text-neutral-600 dark:text-neutral-400 flex-grow">{course.description}</p>
-                                <Link href={`/courses/${course.slug}`} className='px-4 py-2 hover:bg-black/[0.5] text-sm bg-black rounded-lg mt-2'>
-                                Learn More
-                                </Link>
-                            </div>
-                        </BackgroundGradient>
-                </div>)
-              )
-             }
-         </div>
-
-       </div>
-       <div className=' mt-20 text-center'>
-       <Link href={"/courses"}
-        className="px-4 py-2 rounded-lg border border-neutral-600  text-neutral-700 bg-white hover:bg-gray-100 transition duration-100"
-        >
-            View All courses
-        </Link>
-       </div>
-    </div>
-  )
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {demoProducts.map((product) => (
+            <article
+              key={product.id}
+              className="rounded-2xl overflow-hidden border border-white/10 bg-black/30 backdrop-blur"
+            >
+              <img src={product.image} alt={product.title} className="h-60 w-full object-cover" />
+              <div className="p-5">
+                <p className="text-xs uppercase tracking-wider text-teal-400">{product.category}</p>
+                <h3 className="text-xl mt-2 text-white font-semibold">{product.title}</h3>
+                <a
+                  href="#inquiry"
+                  className="inline-block mt-4 px-4 py-2 rounded-lg bg-white text-black text-sm font-medium hover:bg-gray-200 transition"
+                >
+                  Inquiry Button
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
-export default FeaturedSection
+export default FeaturedSection;
