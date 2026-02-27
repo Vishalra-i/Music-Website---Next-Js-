@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Music App",
-  description: "by Vishal Rai",
+  title: "Chandra Tiles Bilaspur | Premium Tiles Showroom",
+  description:
+    "Discover premium floor, wall, bathroom, and kitchen tiles at Chandra Tiles Bilaspur. Get quick pricing on WhatsApp.",
 };
 
 export default function RootLayout({
@@ -16,13 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className='dark'>
-      <body className={inter.className}>
-        <div className="relative  w-full flex items-center justify-center ">
-           <Navbar/>
-        </div>
-        {children}
-        </body>
+    <html lang="en">
+      <body className="font-sans">{children}</body>
     </html>
   );
 }
