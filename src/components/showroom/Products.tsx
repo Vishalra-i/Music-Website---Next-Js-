@@ -12,7 +12,7 @@ const products = [
   {
     name: "Wood Texture Plank",
     image:
-      "https://images.unsplash.com/photo-1616594039964-3f5b3e4f7d0e?auto=format&fit=crop&w=900&q=80",
+      "https://unsplash.com/photos/a-close-up-of-a-wall-made-of-wood-planks-DOYozC2MHOs",
   },
   {
     name: "Concrete Matte Tile",
