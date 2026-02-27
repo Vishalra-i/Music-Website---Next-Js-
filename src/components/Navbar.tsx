@@ -17,16 +17,19 @@ function Navbar({ className }: { className?: string }) {
             <MenuItem setActive={setActive} active={active} item="Our Courses">
               {/* //Our Course drop-menu items  */}
               <div className="flex flex-col space-y-4 text-sm">
-                  <HoveredLink href="/courses">All Courses</HoveredLink>
+                  <HoveredLink href="/courses">Products</HoveredLink>
                   <HoveredLink href="/courses">
-                    Basic Music Theory
+                    Tiles
                   </HoveredLink>
                   <HoveredLink href="/courses">
-                    Advanced Composition
+                      Bathroom Accessories
+
                   </HoveredLink>
-                  <HoveredLink href="/courses">Songwriting</HoveredLink>
                   <HoveredLink href="/courses">
-                    Music Production
+                      wall tiles
+                  </HoveredLink>
+                  <HoveredLink href="/courses">
+                      Wash Basin
                   </HoveredLink>
                </div>
             </MenuItem>
