@@ -1,23 +1,12 @@
-const aboutImage =
-  "https://images.unsplash.com/photo-1615874694520-474822394e73?auto=format&fit=crop&w=1200&q=80";
-
 export default function About() {
   return (
-    <section className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-2 lg:items-center lg:px-10">
-      <div className="overflow-hidden rounded-2xl shadow-md">
-        <img
-          src={aboutImage}
-          alt="Premium tile showroom"
-          className="h-full w-full object-cover"
-        />
-      </div>
-
-      <div className="space-y-4">
-        <p className="text-sm uppercase tracking-[0.24em] text-stone-500">About</p>
-        <h2 className="text-3xl font-semibold text-stone-800">Our Showroom</h2>
-        <p className="max-w-xl text-lg text-stone-600">
-          Trusted tile showroom in Bilaspur offering premium designs and bulk
-          supply.
+    <section id="about" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10">
+      <div className="rounded-3xl border border-stone-200 bg-white p-8 shadow-sm sm:p-12">
+        <p className="text-xs uppercase tracking-[0.3em] text-[#9a7b1a]">About Royal Tile Studio</p>
+        <h2 className="mt-3 text-3xl font-bold text-stone-900 sm:text-4xl">Designed for Elegant Interiors</h2>
+        <p className="mt-5 max-w-4xl text-base leading-relaxed text-stone-600 sm:text-lg">
+          Royal Tile Studio offers a wide range of premium tiles for homes, offices, and commercial spaces.
+          We combine quality, design, and durability to elevate your interiors.
         </p>
       </div>
     </section>
