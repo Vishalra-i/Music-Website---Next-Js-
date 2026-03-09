@@ -1,3 +1,7 @@
+import { notFound } from "next/navigation";
+
+export default function DemoDirectoryPage() {
+  notFound();
 import Link from "next/link";
 import type { Metadata } from "next";
 import { stores } from "@/data/stores";
