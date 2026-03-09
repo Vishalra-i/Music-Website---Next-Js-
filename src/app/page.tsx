@@ -1,33 +1,22 @@
-import About from "@/components/showroom/About";
-import Categories from "@/components/showroom/Categories";
-import Contact from "@/components/showroom/Contact";
-import Footer from "@/components/showroom/Footer";
-import Gallery from "@/components/showroom/Gallery";
-import Hero from "@/components/showroom/Hero";
-import MapSection from "@/components/showroom/MapSection";
-import Navbar from "@/components/showroom/Navbar";
-import Products from "@/components/showroom/Products";
-import StickyWhatsApp from "@/components/showroom/StickyWhatsApp";
-import VideoSection from "@/components/showroom/VideoSection";
-import WhyChoose from "@/components/showroom/WhyChoose";
+import Link from "next/link";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <>
-      <Navbar />
-      <main className="min-h-screen bg-[#f6f6f4] text-stone-900 antialiased">
-        <Hero />
-        <About />
-        <Products />
-        <Categories />
-        <Gallery />
-        <WhyChoose />
-        <MapSection />
-        <VideoSection />
-        <Contact />
-      </main>
-      <Footer />
-      <StickyWhatsApp />
-    </>
+    <main className="mx-auto w-full max-w-6xl px-4 py-16">
+      <h1 className="text-4xl font-extrabold">Scalable Multi-Client Tile Showroom Websites</h1>
+      <p className="mt-4 max-w-3xl text-stone-600">
+        Add a new store in <code className="mx-1 rounded bg-stone-100 px-1">/src/data/stores.ts</code> and the website automatically supports a new route at
+        <code className="mx-1 rounded bg-stone-100 px-1">/demo/[store]</code> with dynamic SEO, product gallery, and conversion actions.
+      </p>
+
+      <div className="mt-8 flex gap-3">
+        <Link href="/demo/selection-zone" className="rounded-lg bg-stone-900 px-5 py-3 text-sm font-semibold text-white">
+          Open Store Website
+        </Link>
+        <Link href="/admin" className="rounded-lg bg-stone-200 px-5 py-3 text-sm font-semibold text-stone-900">
+          Admin Dashboard
+        </Link>
+      </div>
+    </main>
   );
 }

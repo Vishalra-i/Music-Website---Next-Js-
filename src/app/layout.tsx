@@ -1,19 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "@/components/site/Header";
+import Footer from "@/components/site/Footer";
 
 export const metadata: Metadata = {
-  title: "Royal Tile Studio | Premium Tiles & Interior Surface Showroom",
-  description:
-    "Royal Tile Studio offers premium floor, wall, bathroom, kitchen, and designer tiles. Call +91 7888731094 and visit our showroom for luxury tile collections.",
-  keywords: [
-    "Royal Tile Studio",
-    "premium tiles showroom",
-    "floor tiles",
-    "wall tiles",
-    "bathroom tiles",
-    "kitchen tiles",
-    "designer tiles",
-  ],
+  title: "Tile Showroom Website",
+  description: "Production-ready tile showroom websites with dynamic store routing, SEO, and conversion features.",
 };
 
 export default function RootLayout({
@@ -23,7 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-sans">{children}</body>
+      <body className="bg-stone-50 font-sans text-stone-900 antialiased">
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
