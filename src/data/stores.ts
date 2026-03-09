@@ -15,6 +15,11 @@ export type StoreData = {
 };
 
 export const baseStores: Record<string, StoreData> = {
+  mapEmbed: string;
+  categories: string[];
+};
+
+export const stores: Record<string, StoreData> = {
   "selection-zone": {
     name: "Selection Zone Tiles & Sanitary",
     city: "Surat",
@@ -25,6 +30,8 @@ export const baseStores: Record<string, StoreData> = {
     reviews: "500+",
     established: "2009",
     heroImage: "/images/hero-showroom.svg",
+    mapEmbed:
+      "https://www.google.com/maps?q=Udhna-Magdala%20Road%2C%20Surat%2C%20Gujarat&output=embed",
     categories: [
       "Floor Tiles",
       "Wall Tiles",
@@ -34,6 +41,9 @@ export const baseStores: Record<string, StoreData> = {
       "Sanitaryware",
       "Designer Tiles",
       "Imported Tiles",
+      "Sanitaryware",
+      "Imported Tiles",
+      "Ceramic Tiles",
     ],
   },
   "patel-tiles": {
@@ -55,6 +65,15 @@ export const baseStores: Record<string, StoreData> = {
       "Sanitaryware",
       "Designer Tiles",
       "Imported Tiles",
+    mapEmbed:
+      "https://www.google.com/maps?q=SG%20Highway%2C%20Ahmedabad%2C%20Gujarat&output=embed",
+    categories: [
+      "Vitrified Tiles",
+      "Outdoor Tiles",
+      "Kitchen Tiles",
+      "Designer Wall Tiles",
+      "Sanitaryware",
+      "Ceramic Tiles",
     ],
   },
   "royal-ceramics": {
@@ -100,3 +119,15 @@ export async function saveRuntimeStore(slug: string, store: StoreData) {
   runtimeOnly[slug] = store;
   await fs.writeFile(runtimePath, JSON.stringify(runtimeOnly, null, 2));
 }
+    mapEmbed:
+      "https://www.google.com/maps?q=Alkapuri%2C%20Vadodara%2C%20Gujarat&output=embed",
+    categories: [
+      "Floor Tiles",
+      "Bathroom Tiles",
+      "Imported Tiles",
+      "Marble Finish Tiles",
+      "Ceramic Tiles",
+      "Parking Tiles",
+    ],
+  },
+};
