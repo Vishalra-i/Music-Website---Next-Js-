@@ -1,11 +1,11 @@
 export const gallery = {
   tiles: [
-    "/images/floor-tiles.svg",
-    "/images/wall-tiles.svg",
-    "/images/bathroom-tiles.svg",
+    "/images/floortiles.png",
+    "/images/floortiles2.png",
+    "/images/bathroomtiles.png",
   ],
   washbasin: ["/images/gallery-1.svg", "/images/gallery-2.svg"],
-  bathroomAccessories: ["/images/gallery-2.svg", "/images/gallery-3.svg"],
+  bathroomAccessories: ["/images/bathroomtiles.png", "/images/gallery-3.svg"],
   sanitaryware: ["/images/gallery-1.svg", "/images/gallery-3.svg"],
   designerTiles: ["/images/kitchen-tiles.svg", "/images/gallery-2.svg"],
   importedTiles: ["/images/gallery-3.svg", "/images/floor-tiles.svg"],

@@ -12,7 +12,7 @@ export const businessData = {
   categories: [
     {
       name: "Floor Tiles",
-      image: "/images/floor-tiles.svg",
+      image: "/images/floortiles.png",
     },
     {
       name: "Wall Tiles",
@@ -20,7 +20,7 @@ export const businessData = {
     },
     {
       name: "Bathroom Tiles",
-      image: "/images/bathroom-tiles.svg",
+      image: "/images/bathroomtiles.png",
     },
     {
       name: "Sanitaryware",

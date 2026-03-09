@@ -21,6 +21,7 @@ export default function AddStoreForm() {
       established: String(formData.get("established") || ""),
       rating: String(formData.get("rating") || ""),
       reviews: String(formData.get("reviews") || "New"),
+      heroImage: String(formData.get("heroImage") || "/images/hero-showroom.svg"),
       categories,
     };
 
@@ -51,6 +52,12 @@ export default function AddStoreForm() {
       <input name="established" placeholder="Established Year" required className="rounded border border-stone-300 px-3 py-2" />
       <input name="rating" placeholder="Rating" required className="rounded border border-stone-300 px-3 py-2" />
       <input name="reviews" placeholder="Reviews (optional)" className="rounded border border-stone-300 px-3 py-2" />
+      <input
+        name="heroImage"
+        placeholder="Hero Image Path (optional)"
+        defaultValue="/images/hero-showroom.svg"
+        className="rounded border border-stone-300 px-3 py-2"
+      />
       <textarea
         name="categories"
         placeholder="Categories (comma separated)"

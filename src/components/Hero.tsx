@@ -31,7 +31,7 @@ export default function Hero({ store }: HeroProps) {
       </div>
       <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white p-2 shadow-sm">
         <Image
-          src={store.heroImage}
+          src={store.heroImage || "/images/hero-showroom.svg"}
           alt={`${store.name} showroom`}
           width={920}
           height={620}

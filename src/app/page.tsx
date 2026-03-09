@@ -10,12 +10,7 @@ export default function HomePage() {
       </p>
 
       <div className="mt-8 flex gap-3">
-        <Link href="/demo" className="rounded-lg bg-stone-900 px-5 py-3 text-sm font-semibold text-white">
-          View Demo Stores
-        </Link>
-        <Link href="/demo/selection-zone" className="rounded-lg bg-stone-900 px-5 py-3 text-sm font-semibold text-white">
-          Open Store Website
-        </Link>
+        
         <Link href="/admin" className="rounded-lg bg-stone-200 px-5 py-3 text-sm font-semibold text-stone-900">
           Admin Dashboard
         </Link>
