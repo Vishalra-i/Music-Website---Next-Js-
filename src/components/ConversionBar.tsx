@@ -5,8 +5,9 @@ type ConversionBarProps = {
   store: StoreData;
 };
 
+const message = "Hello, I saw your tile showroom online and want more information.";
+
 export default function ConversionBar({ store }: ConversionBarProps) {
-  const message = "Hello I saw your tiles online and want more details";
   const whatsappUrl = `https://wa.me/${store.whatsapp}?text=${encodeURIComponent(message)}`;
 
   return (
@@ -25,7 +26,7 @@ export default function ConversionBar({ store }: ConversionBarProps) {
             Call Now
           </Link>
           <Link href={whatsappUrl} target="_blank" className="flex-1 rounded-md bg-green-500 py-3 text-center text-sm font-semibold text-white">
-            Enquiry
+            WhatsApp
           </Link>
         </div>
       </div>

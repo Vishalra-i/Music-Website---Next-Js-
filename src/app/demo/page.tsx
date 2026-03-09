@@ -1,17 +1,22 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { stores } from "@/data/stores";
+import { getStores } from "@/data/stores";
 
 export const metadata: Metadata = {
   title: "Tile Showroom Demo Platform",
-  description: "Multi-client tile showroom demos. Open a client URL and see fully personalized pages from a central data file.",
+  description: "Multi-client tile showroom demos with centralized and runtime store data.",
 };
 
-export default function DemoIndexPage() {
+export default async function DemoIndexPage() {
+  const stores = await getStores();
+
   return (
     <main className="mx-auto w-full max-w-6xl px-4 py-12">
       <h1 className="text-3xl font-bold">Tile Showroom Demo Platform</h1>
-      <p className="mt-2 text-stone-600">Choose a client demo. Add a new store in <code>/src/data/stores.ts</code> and a new route auto-works.</p>
+      <p className="mt-2 text-stone-600">
+        Choose a client demo. Add a new store from admin or inside
+        <code className="mx-1 rounded bg-stone-100 px-1">/src/data/stores.ts</code>.
+      </p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {Object.entries(stores).map(([slug, store]) => (

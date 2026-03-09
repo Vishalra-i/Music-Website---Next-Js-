@@ -1,3 +1,6 @@
+import { promises as fs } from "node:fs";
+import path from "node:path";
+
 export type StoreData = {
   name: string;
   city: string;
@@ -8,11 +11,10 @@ export type StoreData = {
   reviews: string;
   established: string;
   heroImage: string;
-  mapEmbed: string;
   categories: string[];
 };
 
-export const stores: Record<string, StoreData> = {
+export const baseStores: Record<string, StoreData> = {
   "selection-zone": {
     name: "Selection Zone Tiles & Sanitary",
     city: "Surat",
@@ -23,15 +25,15 @@ export const stores: Record<string, StoreData> = {
     reviews: "500+",
     established: "2009",
     heroImage: "/images/hero-showroom.svg",
-    mapEmbed:
-      "https://www.google.com/maps?q=Udhna-Magdala%20Road%2C%20Surat%2C%20Gujarat&output=embed",
     categories: [
       "Floor Tiles",
       "Wall Tiles",
       "Bathroom Tiles",
+      "Wash Basin",
+      "Bathroom Accessories",
       "Sanitaryware",
+      "Designer Tiles",
       "Imported Tiles",
-      "Ceramic Tiles",
     ],
   },
   "patel-tiles": {
@@ -44,15 +46,15 @@ export const stores: Record<string, StoreData> = {
     reviews: "320+",
     established: "2012",
     heroImage: "/images/gallery-2.svg",
-    mapEmbed:
-      "https://www.google.com/maps?q=SG%20Highway%2C%20Ahmedabad%2C%20Gujarat&output=embed",
     categories: [
-      "Vitrified Tiles",
-      "Outdoor Tiles",
-      "Kitchen Tiles",
-      "Designer Wall Tiles",
+      "Floor Tiles",
+      "Wall Tiles",
+      "Bathroom Tiles",
+      "Wash Basin",
+      "Bathroom Accessories",
       "Sanitaryware",
-      "Ceramic Tiles",
+      "Designer Tiles",
+      "Imported Tiles",
     ],
   },
   "royal-ceramics": {
@@ -65,15 +67,36 @@ export const stores: Record<string, StoreData> = {
     reviews: "410+",
     established: "2010",
     heroImage: "/images/gallery-3.svg",
-    mapEmbed:
-      "https://www.google.com/maps?q=Alkapuri%2C%20Vadodara%2C%20Gujarat&output=embed",
     categories: [
       "Floor Tiles",
+      "Wall Tiles",
       "Bathroom Tiles",
+      "Wash Basin",
+      "Bathroom Accessories",
+      "Sanitaryware",
+      "Designer Tiles",
       "Imported Tiles",
-      "Marble Finish Tiles",
-      "Ceramic Tiles",
-      "Parking Tiles",
     ],
   },
 };
+
+const runtimePath = path.join(process.cwd(), "src/data/stores.runtime.json");
+
+export async function getStores(): Promise<Record<string, StoreData>> {
+  try {
+    const file = await fs.readFile(runtimePath, "utf-8");
+    const runtimeStores = JSON.parse(file) as Record<string, StoreData>;
+    return { ...baseStores, ...runtimeStores };
+  } catch {
+    return baseStores;
+  }
+}
+
+export async function saveRuntimeStore(slug: string, store: StoreData) {
+  const current = await getStores();
+  const runtimeOnly = Object.fromEntries(
+    Object.entries(current).filter(([key]) => !(key in baseStores))
+  );
+  runtimeOnly[slug] = store;
+  await fs.writeFile(runtimePath, JSON.stringify(runtimeOnly, null, 2));
+}

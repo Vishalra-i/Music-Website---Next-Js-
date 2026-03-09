@@ -4,9 +4,8 @@ import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
 
 export const metadata: Metadata = {
-  title: "Tile Showroom Demo Platform",
-  description:
-    "Scalable multi-client tile showroom demos built with Next.js App Router and Tailwind CSS.",
+  title: "Tile Showroom Website",
+  description: "Production-ready tile showroom websites with dynamic store routing, SEO, and conversion features.",
 };
 
 export default function RootLayout({
