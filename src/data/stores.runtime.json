@@ -19,5 +19,21 @@
       "Designer Tiles",
       "Imported Tiles"
     ]
+  },
+  "paras-marble-nagpur": {
+    "name": "Paras Marble Nagpur",
+    "city": "Nagpur",
+    "phone": "9172190005",
+    "whatsapp": "9172190005",
+    "address": "Shop No. 4 Ganga Bai Ghat Square To Jagnade Square Road, Gangabai Ghat Rd, Old Bagadganj, Nagpur, Maharashtra 440008",
+    "rating": "4.3",
+    "reviews": "Lot of varieties very good Staff...prices reasonable ...keep it up sir",
+    "established": "2001",
+    "heroImage": "https://www.instagram.com/parasmarblenagpur/p/CkunwLiD8YL/",
+    "categories": [
+      "Floor Tiles",
+      "Wall Tiles",
+      "Bathroom Tiles"
+    ]
   }
 }
