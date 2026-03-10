@@ -80,7 +80,21 @@ export const baseStores: Record<string, StoreData> = {
   },
 };
 
-const runtimePath = path.join(process.cwd(), "src/data/stores.runtime.json");
+const projectRuntimePath = path.join(
+  process.cwd(),
+  "src/data/stores.runtime.json"
+);
+
+const tempRuntimePath = path.join(
+  process.env.TMPDIR || "/tmp",
+  "stores.runtime.json"
+);
+
+const runtimePath =
+  process.env.STORES_RUNTIME_PATH ||
+  (process.env.VERCEL || process.env.LAMBDA_TASK_ROOT
+    ? tempRuntimePath
+    : projectRuntimePath);
 
 export async function getStores(): Promise<Record<string, StoreData>> {
   try {
@@ -98,5 +112,6 @@ export async function saveRuntimeStore(slug: string, store: StoreData) {
     Object.entries(current).filter(([key]) => !(key in baseStores))
   );
   runtimeOnly[slug] = store;
+  await fs.mkdir(path.dirname(runtimePath), { recursive: true });
   await fs.writeFile(runtimePath, JSON.stringify(runtimeOnly, null, 2));
 }
