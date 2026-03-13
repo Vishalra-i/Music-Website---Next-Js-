@@ -80,30 +80,29 @@ export const baseStores: Record<string, StoreData> = {
   },
 };
 
-const projectRuntimePath = path.join(
-  process.cwd(),
-  "src/data/stores.runtime.json"
-);
+const projectRuntimePath = path.join(process.cwd(), "src/data/stores.runtime.json");
 
 const tempRuntimePath = path.join(
   process.env.TMPDIR || "/tmp",
   "stores.runtime.json"
 );
 
-const runtimePath =
-  process.env.STORES_RUNTIME_PATH ||
-  (process.env.VERCEL || process.env.LAMBDA_TASK_ROOT
-    ? tempRuntimePath
-    : projectRuntimePath);
+const runtimePath = process.env.STORES_RUNTIME_PATH || tempRuntimePath;
+
+async function readStoresFile(filePath: string): Promise<Record<string, StoreData>> {
+  try {
+    const file = await fs.readFile(filePath, "utf-8");
+    return JSON.parse(file) as Record<string, StoreData>;
+  } catch {
+    return {};
+  }
+}
 
 export async function getStores(): Promise<Record<string, StoreData>> {
-  try {
-    const file = await fs.readFile(runtimePath, "utf-8");
-    const runtimeStores = JSON.parse(file) as Record<string, StoreData>;
-    return { ...baseStores, ...runtimeStores };
-  } catch {
-    return baseStores;
-  }
+  const fileStores = await readStoresFile(projectRuntimePath);
+  const runtimeStores = await readStoresFile(runtimePath);
+
+  return { ...baseStores, ...fileStores, ...runtimeStores };
 }
 
 export async function saveRuntimeStore(slug: string, store: StoreData) {
