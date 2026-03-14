@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import AddStoreForm from "@/components/admin/AddStoreForm";
 import LogoutButton from "@/components/admin/LogoutButton";
-import { getStores } from "@/data/stores";
+import { getStores } from "@/lib/db/stores";
 
 export const dynamic = "force-dynamic";
 

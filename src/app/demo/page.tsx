@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getStores } from "@/data/stores";
+import { getStores } from "@/lib/db/stores";
 
 export const metadata: Metadata = {
   title: "Tile Showroom Demo Platform",
