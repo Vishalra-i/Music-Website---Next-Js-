@@ -9,6 +9,7 @@ html {
 body {
   background: #f6f6f4;
   color: #171717;
+  font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 ::-webkit-scrollbar {
