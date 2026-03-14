@@ -34,3 +34,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## MongoDB migration (hybrid mode)
+
+This project now supports a safe hybrid data layer for demo stores:
+
+- If MongoDB has store records, reads/writes use MongoDB.
+- If MongoDB is not configured or has no store records yet, the app falls back to `src/data/stores.ts` + `src/data/stores.runtime.json`.
+
+### Environment variables
+
+```bash
+MONGODB_URI=
+MONGODB_DB=
+```
+
+### Seed MongoDB from existing store data
+
+Use the migration script:
+
+```bash
+npx tsx scripts/migrateStoreData.ts
+```
+
+(Install `tsx` globally or as a dev dependency if needed.)

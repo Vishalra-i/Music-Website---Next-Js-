@@ -6,7 +6,7 @@ import Hero from "@/components/Hero";
 import ProductGallery from "@/components/ProductGallery";
 import ShowroomMap from "@/components/ShowroomMap";
 import WhatsappCTA from "@/components/WhatsappCTA";
-import { getStores } from "@/data/stores";
+import { getStores } from "@/lib/db/stores";
 
 type DemoPageProps = {
   params: {

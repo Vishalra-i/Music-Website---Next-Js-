@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { saveRuntimeStore, type StoreData } from "@/data/stores";
+import { createStore, type StoreInput } from "@/lib/db/stores";
 
 const slugify = (value: string) =>
   value
@@ -9,34 +9,49 @@ const slugify = (value: string) =>
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-");
 
+function validateStorePayload(payload: Partial<StoreInput>) {
+  if (!payload.name || !payload.city || !payload.phone || !payload.whatsapp || !payload.address) {
+    return "Missing required text fields";
+  }
+
+  if (!payload.established || !payload.rating || !Array.isArray(payload.categories) || payload.categories.length === 0) {
+    return "Missing required business details";
+  }
+
+  return null;
+}
+
 export async function POST(request: Request) {
   const auth = request.headers.get("cookie")?.includes("admin-auth=true");
   if (!auth) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const payload = (await request.json()) as Omit<StoreData, "heroImage"> & {
-    heroImage?: string;
-    reviews?: string;
-  };
+  const payload = (await request.json()) as Partial<StoreInput>;
+  const validationError = validateStorePayload(payload);
 
-  const slug = slugify(payload.name);
+  if (validationError) {
+    return NextResponse.json({ error: validationError }, { status: 400 });
+  }
 
-  const store: StoreData = {
-    name: payload.name,
-    city: payload.city,
-    phone: payload.phone,
-    whatsapp: payload.whatsapp,
-    address: payload.address,
-    rating: payload.rating,
+  const slug = slugify(payload.name as string);
+
+  const store: StoreInput = {
+    slug,
+    name: payload.name as string,
+    city: payload.city as string,
+    phone: payload.phone as string,
+    whatsapp: payload.whatsapp as string,
+    address: payload.address as string,
+    rating: payload.rating as string,
     reviews: payload.reviews || "New",
-    established: payload.established,
+    established: payload.established as string,
     heroImage: payload.heroImage || "/images/hero-showroom.svg",
-    categories: payload.categories,
+    categories: payload.categories as string[],
   };
 
-  await saveRuntimeStore(slug, store);
-  return NextResponse.json({ slug });
+  const result = await createStore(store);
+  return NextResponse.json({ slug, source: result.source });
 }
 
 export async function GET() {
