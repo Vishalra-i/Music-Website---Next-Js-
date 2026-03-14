@@ -42,6 +42,7 @@ async function createClientPromise(): Promise<MongoClientInstance> {
 
 export async function getMongoDb(): Promise<MongoDbInstance | null> {
   if (!uri || !dbName) {
+    console.warn("MONGODB_URI or MONGODB_DB environment variable is not set. MongoDB will not be used.");
     return null;
   }
 
@@ -55,13 +56,15 @@ export async function getMongoDb(): Promise<MongoDbInstance | null> {
     }
 
     const client = await global.__mongoClientPromise__;
+    console.log("Successfully connected to MongoDB."+`uri: ${uri}, dbName: ${dbName}`);
     return client.db(dbName);
   } catch (error) {
     if (!connectionErrorLogged) {
       connectionErrorLogged = true;
       console.error("MongoDB connection failed, using fallback store.", error);
     }
-
+    console.log("Falling back to in-memory store due to MongoDB connection failure.");
     return null;
+
   }
 }
