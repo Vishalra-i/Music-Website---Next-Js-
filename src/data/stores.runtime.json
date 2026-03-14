@@ -35,5 +35,29 @@
       "Wall Tiles",
       "Bathroom Tiles"
     ]
+  },
+
+{
+  "digital-house": {
+    "name": "DIGITAL HOUSE - THE TILES SHOP",
+    "city": "Gwalior",
+    "phone": "9752813255",
+    "whatsapp": "9752813255",
+    "address": "In Front Of Shatabdi Complex, Huzrat Pull, Lashkar, Anand Nagar, Muskan Vatika, SaragTal Road, Gwalior, Madhya Pradesh 474001",
+    "rating": "5.0",
+    "reviews": "Customer Review: \"Best tiles collection with modern designs and good service.\"",
+    "established": "2020",
+    "heroImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+    "categories": [
+      "Floor Tiles",
+      "Wall Tiles",
+      "Bathroom Tiles",
+      "Sanitaryware",
+      "Designer Tiles",
+      "Digital Tiles",
+      "Kitchen Tiles",
+      "Imported Tiles"
+    ]
   }
+}
 }
