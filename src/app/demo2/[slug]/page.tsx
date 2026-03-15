@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import BrandsSection from "@/components/demo2/BrandsSection";
-import ContactSection from "@/components/demo2/ContactSection";
-import FloatingWhatsapp from "@/components/demo2/FloatingWhatsapp";
-import HeroSection from "@/components/demo2/HeroSection";
-import InquiryForm from "@/components/demo2/InquiryForm";
-import RoomInspiration from "@/components/demo2/RoomInspiration";
-import TileCategories from "@/components/demo2/TileCategories";
-import TrendingTiles from "@/components/demo2/TrendingTiles";
-import TrustSection from "@/components/demo2/TrustSection";
+import RestaurantTemplate from "@/components/templates/RestaurantTemplate";
+import TilesModernTemplate from "@/components/templates/TilesModernTemplate";
+import { getStoreType } from "@/data/stores";
 import { getStores } from "@/lib/db/stores";
 
 
@@ -29,9 +23,14 @@ export async function generateMetadata({ params }: Demo2PageProps): Promise<Meta
     };
   }
 
+  const type = getStoreType(store);
+
   return {
-    title: `${store.name} | Tiles Showroom Experience`,
-    description: `Explore ${store.name} in ${store.city} with premium tile categories, trending designs, and quick WhatsApp inquiries.`,
+    title: type === "restaurant" ? `${store.name} | Restaurant Experience` : `${store.name} | Tiles Showroom Experience`,
+    description:
+      type === "restaurant"
+        ? `Explore ${store.name} in ${store.city} with menu highlights and quick WhatsApp reservations.`
+        : `Explore ${store.name} in ${store.city} with premium tile categories, trending designs, and quick WhatsApp inquiries.`,
   };
 }
 
@@ -54,17 +53,7 @@ export default async function Demo2StorePage({ params }: Demo2PageProps) {
     );
   }
 
-  return (
-    <main className="bg-slate-50 font-sans text-slate-900">
-      <HeroSection store={store} slug={params.slug} />
-      <TileCategories />
-      <TrendingTiles />
-      <RoomInspiration />
-      <TrustSection store={store} slug={params.slug} />
-      <BrandsSection />
-      <InquiryForm whatsapp={store.whatsapp} />
-      <ContactSection store={store} slug={params.slug} />
-      <FloatingWhatsapp whatsapp={store.whatsapp} />
-    </main>
-  );
+  const type = getStoreType(store);
+
+  return type === "restaurant" ? <RestaurantTemplate store={store} /> : <TilesModernTemplate store={store} slug={params.slug} />;
 }

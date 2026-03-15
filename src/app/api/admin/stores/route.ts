@@ -21,6 +21,10 @@ function validateStorePayload(payload: Partial<StoreInput>) {
   return null;
 }
 
+function resolveStoreType(type: unknown): "tiles" | "restaurant" {
+  return type === "restaurant" ? "restaurant" : "tiles";
+}
+
 export async function POST(request: Request) {
   const auth = request.headers.get("cookie")?.includes("admin-auth=true");
   if (!auth) {
@@ -38,6 +42,7 @@ export async function POST(request: Request) {
 
   const store: StoreInput = {
     slug,
+    type: resolveStoreType(payload.type),
     name: payload.name as string,
     city: payload.city as string,
     phone: payload.phone as string,

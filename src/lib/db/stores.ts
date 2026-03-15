@@ -1,5 +1,5 @@
 import { unstable_cache } from "next/cache";
-import { getStores as getLegacyStores, saveRuntimeStore, type StoreData } from "@/data/stores";
+import { getStoreType, getStores as getLegacyStores, saveRuntimeStore, type StoreData } from "@/data/stores";
 import { getMongoDb } from "@/lib/mongodb";
 import { COLLECTIONS, type StoreDocument } from "@/lib/db/models";
 
@@ -7,6 +7,7 @@ export type StoreInput = StoreData & { slug: string };
 
 function toStoreData(document: StoreDocument): StoreData {
   return {
+    type: getStoreType(document),
     name: document.name,
     city: document.city,
     phone: document.phone,
@@ -71,10 +72,15 @@ export async function getStoreBySlug(slug: string) {
 }
 
 export async function createStore(input: StoreInput) {
+  const normalizedInput: StoreInput = {
+    ...input,
+    type: getStoreType(input),
+  };
+
   const db = await getMongoDb();
   if (!db) {
-    await saveRuntimeStore(input.slug, input);
-    return { slug: input.slug, source: "fallback" as const };
+    await saveRuntimeStore(normalizedInput.slug, normalizedInput);
+    return { slug: normalizedInput.slug, source: "fallback" as const };
   }
 
   await ensureStoreIndexes();
@@ -84,7 +90,7 @@ export async function createStore(input: StoreInput) {
     { slug: input.slug },
     {
       $set: {
-        ...input,
+        ...normalizedInput,
         updatedAt: now,
       },
       $setOnInsert: {
@@ -94,7 +100,7 @@ export async function createStore(input: StoreInput) {
     { upsert: true }
   );
 
-  return { slug: input.slug, source: "mongodb" as const };
+  return { slug: normalizedInput.slug, source: "mongodb" as const };
 }
 
 export async function updateStore(idOrSlug: string, updates: Partial<StoreData>) {
