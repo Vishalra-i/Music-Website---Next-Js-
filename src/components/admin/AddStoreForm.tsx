@@ -13,9 +13,25 @@ export const galleryCategoryMap = [
   { label: "Imported Tiles", key: "importedTiles" },
 ];
 
+const restaurantCategoryMap = [
+  "Starters",
+  "Main Course",
+  "Chinese",
+  "Desserts",
+  "Drinks",
+];
+
+type StoreType = "tiles" | "restaurant";
+
 export default function AddStoreForm() {
   const [status, setStatus] = useState<string>("");
+  const [storeType, setStoreType] = useState<StoreType>("tiles");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+  const categoryOptions = storeType === "restaurant" ? restaurantCategoryMap : galleryCategoryMap.map((cat) => cat.label);
+
+  const namePlaceholder = storeType === "restaurant" ? "Restaurant Name" : "Store Name";
+  const categoriesLabel = storeType === "restaurant" ? "Select Menu Categories" : "Select Tile Categories";
 
   function toggleCategory(label: string) {
     setSelectedCategories((prev) =>
@@ -29,6 +45,7 @@ export default function AddStoreForm() {
     setStatus("Saving...");
 
     const payload = {
+      type: storeType,
       name: String(formData.get("name") || ""),
       city: String(formData.get("city") || ""),
       phone: String(formData.get("phone") || ""),
@@ -69,9 +86,26 @@ export default function AddStoreForm() {
     >
       <h2 className="text-xl font-bold">Add New Store</h2>
 
+      <label className="grid gap-1 text-sm font-medium text-stone-700">
+        Store Type
+        <select
+          name="type"
+          value={storeType}
+          onChange={(event) => {
+            const selectedType = event.target.value as StoreType;
+            setStoreType(selectedType);
+            setSelectedCategories([]);
+          }}
+          className="rounded border border-stone-300 px-3 py-2 font-normal"
+        >
+          <option value="tiles">Tiles</option>
+          <option value="restaurant">Restaurant</option>
+        </select>
+      </label>
+
       <input
         name="name"
-        placeholder="Store Name"
+        placeholder={namePlaceholder}
         required
         className="rounded border border-stone-300 px-3 py-2"
       />
@@ -133,20 +167,20 @@ export default function AddStoreForm() {
 
       {/* CATEGORY SELECT */}
       <div className="rounded border border-stone-300 p-3">
-        <p className="font-semibold mb-2">Select Categories</p>
+        <p className="mb-2 font-semibold">{categoriesLabel}</p>
 
         <div className="grid grid-cols-2 gap-2">
-          {galleryCategoryMap.map((cat) => (
+          {categoryOptions.map((category) => (
             <label
-              key={cat.label}
+              key={category}
               className="flex items-center gap-2 text-sm"
             >
               <input
                 type="checkbox"
-                checked={selectedCategories.includes(cat.label)}
-                onChange={() => toggleCategory(cat.label)}
+                checked={selectedCategories.includes(category)}
+                onChange={() => toggleCategory(category)}
               />
-              {cat.label}
+              {category}
             </label>
           ))}
         </div>

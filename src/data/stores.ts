@@ -2,6 +2,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 export type StoreData = {
+  type?: "tiles" | "restaurant";
   name: string;
   city: string;
   phone: string;
@@ -13,6 +14,10 @@ export type StoreData = {
   heroImage: string;
   categories: string[];
 };
+
+export function getStoreType(store: Pick<StoreData, "type">): "tiles" | "restaurant" {
+  return store.type === "restaurant" ? "restaurant" : "tiles";
+}
 
 export const baseStores: Record<string, StoreData> = {
   "selection-zone": {
