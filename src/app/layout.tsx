@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-
-const inter = Inter({ subsets: ["latin"] });
+import Header from "@/components/site/Header";
+import Footer from "@/components/site/Footer";
 
 export const metadata: Metadata = {
-  title: "Music App",
-  description: "by Vishal Rai",
+  title: "Tile Showroom Website",
+  description: "Production-ready tile showroom websites with dynamic store routing, SEO, and conversion features.",
 };
 
 export default function RootLayout({
@@ -16,13 +14,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className='dark'>
-      <body className={inter.className}>
-        <div className="relative  w-full flex items-center justify-center ">
-           <Navbar/>
-        </div>
+    <html lang="en">
+      <body className="bg-stone-50 font-sans text-stone-900 antialiased">
+        <Header />
         {children}
-        </body>
+        <Footer />
+      </body>
     </html>
   );
 }

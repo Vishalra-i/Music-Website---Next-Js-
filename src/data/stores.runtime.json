@@ -1,0 +1,60 @@
+{
+  "sawariya-tiles": {
+    "name": "SAWARIYA TILES",
+    "city": "Gwalior",
+    "phone": "7697120503",
+    "whatsapp": "7697120503",
+    "address": "Anand Nagar Rd, Bahodapur, Anand Nagar, Gwalior, Madhya Pradesh 474012",
+    "rating": "4.8",
+    "reviews": "kankotee de\t\"Nice ambiance...wuality and variety of products...awesome experience\"",
+    "established": "2001",
+    "heroImage": "https://res.cloudinary.com/vishalscloud/image/upload/fl_preserve_transparency/v1773375853/1773375730360_1_oksaug.jpg?_s=public-apps",
+    "categories": [
+      "Floor Tiles",
+      "Wall Tiles",
+      "Bathroom Tiles",
+      "Wash Basin",
+      "Bathroom Accessories",
+      "Sanitaryware",
+      "Designer Tiles",
+      "Imported Tiles"
+    ]
+  },
+  "paras-marble-nagpur": {
+    "name": "Paras Marble Nagpur",
+    "city": "Nagpur",
+    "phone": "9172190005",
+    "whatsapp": "9172190005",
+    "address": "Shop No. 4 Ganga Bai Ghat Square To Jagnade Square Road, Gangabai Ghat Rd, Old Bagadganj, Nagpur, Maharashtra 440008",
+    "rating": "4.3",
+    "reviews": "Lot of varieties very good Staff...prices reasonable ...keep it up sir",
+    "established": "2001",
+    "heroImage": "https://lh3.googleusercontent.com/p/AF1QipMK-7779AYrPW3fPUyN0i1R2j8iGRi-RaCkV0-r=s680-w680-h510-rw",
+    "categories": [
+      "Floor Tiles",
+      "Wall Tiles",
+      "Bathroom Tiles"
+    ]
+  },
+  "digital-house": {
+    "name": "DIGITAL HOUSE - THE TILES SHOP",
+    "city": "Gwalior",
+    "phone": "9752813255",
+    "whatsapp": "9752813255",
+    "address": "In Front Of Shatabdi Complex, Huzrat Pull, Lashkar, Anand Nagar, Muskan Vatika, SaragTal Road, Gwalior, Madhya Pradesh 474001",
+    "rating": "5.0",
+    "reviews": "Customer Review: \"Best tiles collection with modern designs and good service.\"",
+    "established": "2020",
+    "heroImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+    "categories": [
+      "Floor Tiles",
+      "Wall Tiles",
+      "Bathroom Tiles",
+      "Sanitaryware",
+      "Designer Tiles",
+      "Digital Tiles",
+      "Kitchen Tiles",
+      "Imported Tiles"
+    ]
+  }
+}
