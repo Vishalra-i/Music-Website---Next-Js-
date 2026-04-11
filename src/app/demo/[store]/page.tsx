@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import RealEstateTemplate from "@/components/templates/RealEstateTemplate";
 import RestaurantTemplate from "@/components/templates/RestaurantTemplate";
 import TilesTemplate from "@/components/templates/TilesTemplate";
 import { getStoreType } from "@/data/stores";
@@ -25,11 +26,18 @@ export async function generateMetadata({ params }: DemoPageProps): Promise<Metad
   const type = getStoreType(store);
 
   return {
-    title: type === "restaurant" ? `${store.name} | Restaurant in ${store.city}` : `${store.name} | Tile Showroom in ${store.city}`,
+    title:
+      type === "restaurant"
+        ? `${store.name} | Restaurant in ${store.city}`
+        : type === "realestate"
+          ? `${store.name} | Real Estate in ${store.city}`
+          : `${store.name} | Tile Showroom in ${store.city}`,
     description:
       type === "restaurant"
         ? `Visit ${store.name} in ${store.city}. Explore menu sections and connect instantly on WhatsApp.`
-        : `Visit ${store.name}, trusted tile and sanitary showroom in ${store.city}. Explore floor tiles, wall tiles, wash basins and bathroom accessories.`,
+        : type === "realestate"
+          ? `Explore ${store.name} in ${store.city}. Browse properties for buy and rent, and connect instantly on WhatsApp.`
+          : `Visit ${store.name}, trusted tile and sanitary showroom in ${store.city}. Explore floor tiles, wall tiles, wash basins and bathroom accessories.`,
   };
 }
 
@@ -53,9 +61,13 @@ export default async function DemoStorePage({ params }: DemoPageProps) {
   }
 
   const type = getStoreType(store);
-  return type === "restaurant" ? (
-    <RestaurantTemplate store={store} />
-  ) : (
-    <TilesTemplate store={store} />
-  );
+  if (type === "restaurant") {
+    return <RestaurantTemplate store={store} />;
+  }
+
+  if (type === "realestate") {
+    return <RealEstateTemplate store={store} />;
+  }
+
+  return <TilesTemplate store={store} />;
 }

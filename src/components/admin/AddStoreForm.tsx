@@ -21,17 +21,36 @@ const restaurantCategoryMap = [
   "Drinks",
 ];
 
-type StoreType = "tiles" | "restaurant";
+const realEstateCategoryMap = [
+  "Apartment",
+  "Villa",
+  "Commercial",
+  "Plot",
+  "Rental",
+];
+
+type StoreType = "tiles" | "restaurant" | "realestate";
 
 export default function AddStoreForm() {
   const [status, setStatus] = useState<string>("");
   const [storeType, setStoreType] = useState<StoreType>("tiles");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
-  const categoryOptions = storeType === "restaurant" ? restaurantCategoryMap : galleryCategoryMap.map((cat) => cat.label);
+  const categoryOptions =
+    storeType === "restaurant"
+      ? restaurantCategoryMap
+      : storeType === "realestate"
+        ? realEstateCategoryMap
+        : galleryCategoryMap.map((cat) => cat.label);
 
-  const namePlaceholder = storeType === "restaurant" ? "Restaurant Name" : "Store Name";
-  const categoriesLabel = storeType === "restaurant" ? "Select Menu Categories" : "Select Tile Categories";
+  const namePlaceholder =
+    storeType === "restaurant" ? "Restaurant Name" : storeType === "realestate" ? "Agency Name" : "Store Name";
+  const categoriesLabel =
+    storeType === "restaurant"
+      ? "Select Menu Categories"
+      : storeType === "realestate"
+        ? "Select Property Categories"
+        : "Select Tile Categories";
 
   function toggleCategory(label: string) {
     setSelectedCategories((prev) =>
@@ -100,6 +119,7 @@ export default function AddStoreForm() {
         >
           <option value="tiles">Tiles</option>
           <option value="restaurant">Restaurant</option>
+          <option value="realestate">Real Estate</option>
         </select>
       </label>
 

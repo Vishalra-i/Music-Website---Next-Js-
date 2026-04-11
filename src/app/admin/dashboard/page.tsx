@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import AddStoreForm from "@/components/admin/AddStoreForm";
 import LogoutButton from "@/components/admin/LogoutButton";
+import { getStoreType } from "@/data/stores";
 import { getStores } from "@/lib/db/stores";
 
 export const dynamic = "force-dynamic";
@@ -33,6 +34,7 @@ export default async function AdminDashboardPage() {
             <tr>
               <th className="px-4 py-3">Store Name</th>
               <th className="px-4 py-3">City</th>
+              <th className="px-4 py-3">Type</th>
               <th className="px-4 py-3">Phone</th>
               <th className="px-4 py-3">Demo URL</th>
               <th className="px-4 py-3">Actions</th>
@@ -43,6 +45,7 @@ export default async function AdminDashboardPage() {
               <tr key={slug} className="border-t border-stone-200">
                 <td className="px-4 py-3">{store.name}</td>
                 <td className="px-4 py-3">{store.city}</td>
+                <td className="px-4 py-3 capitalize">{getStoreType(store)}</td>
                 <td className="px-4 py-3">{store.phone}</td>
                 <td className="px-4 py-3">/demo/{slug}</td>
                 <td className="px-4 py-3">

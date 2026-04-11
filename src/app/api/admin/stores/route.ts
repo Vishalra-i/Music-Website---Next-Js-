@@ -21,8 +21,10 @@ function validateStorePayload(payload: Partial<StoreInput>) {
   return null;
 }
 
-function resolveStoreType(type: unknown): "tiles" | "restaurant" {
-  return type === "restaurant" ? "restaurant" : "tiles";
+function resolveStoreType(type: unknown): "tiles" | "restaurant" | "realestate" {
+  if (type === "restaurant") return "restaurant";
+  if (type === "realestate") return "realestate";
+  return "tiles";
 }
 
 export async function POST(request: Request) {

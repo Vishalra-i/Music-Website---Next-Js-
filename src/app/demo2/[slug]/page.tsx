@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import RealEstateTemplate from "@/components/templates/RealEstateTemplate";
 import RestaurantTemplate from "@/components/templates/RestaurantTemplate";
 import TilesModernTemplate from "@/components/templates/TilesModernTemplate";
 import { getStoreType } from "@/data/stores";
@@ -26,11 +27,18 @@ export async function generateMetadata({ params }: Demo2PageProps): Promise<Meta
   const type = getStoreType(store);
 
   return {
-    title: type === "restaurant" ? `${store.name} | Restaurant Experience` : `${store.name} | Tiles Showroom Experience`,
+    title:
+      type === "restaurant"
+        ? `${store.name} | Restaurant Experience`
+        : type === "realestate"
+          ? `${store.name} | Real Estate Experience`
+          : `${store.name} | Tiles Showroom Experience`,
     description:
       type === "restaurant"
         ? `Explore ${store.name} in ${store.city} with menu highlights and quick WhatsApp reservations.`
-        : `Explore ${store.name} in ${store.city} with premium tile categories, trending designs, and quick WhatsApp inquiries.`,
+        : type === "realestate"
+          ? `Explore ${store.name} in ${store.city} with curated property listings, modern filters, and quick WhatsApp inquiries.`
+          : `Explore ${store.name} in ${store.city} with premium tile categories, trending designs, and quick WhatsApp inquiries.`,
   };
 }
 
@@ -55,5 +63,13 @@ export default async function Demo2StorePage({ params }: Demo2PageProps) {
 
   const type = getStoreType(store);
 
-  return type === "restaurant" ? <RestaurantTemplate store={store} /> : <TilesModernTemplate store={store} slug={params.slug} />;
+  if (type === "restaurant") {
+    return <RestaurantTemplate store={store} />;
+  }
+
+  if (type === "realestate") {
+    return <RealEstateTemplate store={store} />;
+  }
+
+  return <TilesModernTemplate store={store} slug={params.slug} />;
 }
