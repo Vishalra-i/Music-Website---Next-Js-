@@ -8,6 +8,12 @@ export type PropertyListing = {
   description: string;
 };
 
+export type Testimonial = {
+  name: string;
+  role: string;
+  quote: string;
+};
+
 export const propertyListings: PropertyListing[] = [
   {
     id: "sunrise-villa",
@@ -63,4 +69,31 @@ export const propertyListings: PropertyListing[] = [
     image: "/images/kitchen-tiles.svg",
     description: "Compact studio apartment ideal for professionals, close to transit and shopping hubs.",
   },
+];
+
+export const realEstateTestimonials: Testimonial[] = [
+  {
+    name: "Riya Shah",
+    role: "Home Buyer",
+    quote: "PrimeNest helped us shortlist genuine options quickly and handled negotiation smoothly.",
+  },
+  {
+    name: "Ankit Mehta",
+    role: "Property Investor",
+    quote: "Clear pricing, fast site visit scheduling, and strong market insights for high-return locations.",
+  },
+  {
+    name: "Neha Patel",
+    role: "Tenant",
+    quote: "I found a rental in two days with complete paperwork support and responsive agent follow-up.",
+  },
+];
+
+export const realEstateGalleryImages = [
+  "/images/hero-showroom.svg",
+  "/images/gallery-1.svg",
+  "/images/gallery-2.svg",
+  "/images/gallery-3.svg",
+  "/images/wall-tiles.svg",
+  "/images/kitchen-tiles.svg",
 ];
