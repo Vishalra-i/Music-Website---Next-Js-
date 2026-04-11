@@ -2,7 +2,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 export type StoreData = {
-  type?: "tiles" | "restaurant";
+  type?: "tiles" | "restaurant" | "realestate";
   name: string;
   city: string;
   phone: string;
@@ -15,8 +15,10 @@ export type StoreData = {
   categories: string[];
 };
 
-export function getStoreType(store: Pick<StoreData, "type">): "tiles" | "restaurant" {
-  return store.type === "restaurant" ? "restaurant" : "tiles";
+export function getStoreType(store: Pick<StoreData, "type">): "tiles" | "restaurant" | "realestate" {
+  if (store.type === "restaurant") return "restaurant";
+  if (store.type === "realestate") return "realestate";
+  return "tiles";
 }
 
 export const baseStores: Record<string, StoreData> = {

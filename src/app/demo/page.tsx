@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getStoreType } from "@/data/stores";
 import { getStores } from "@/lib/db/stores";
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default async function DemoIndexPage() {
           <Link key={slug} href={`/demo/${slug}`} className="rounded-xl border border-stone-200 bg-white p-5 shadow-sm hover:border-stone-300">
             <h2 className="text-lg font-semibold">{store.name}</h2>
             <p className="mt-1 text-sm text-stone-600">{store.city}</p>
+            <p className="mt-1 text-xs font-medium uppercase tracking-wide text-stone-500">{getStoreType(store)}</p>
             <p className="mt-3 text-sm text-green-700">Open demo →</p>
           </Link>
         ))}
